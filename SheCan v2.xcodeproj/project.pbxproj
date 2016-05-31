@@ -12,6 +12,8 @@
 		683DF6F01CFC7BC200B8E47C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DF6EE1CFC7BC200B8E47C /* Main.storyboard */; };
 		683DF6F21CFC7BC200B8E47C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683DF6F11CFC7BC200B8E47C /* Assets.xcassets */; };
 		683DF6F51CFC7BC200B8E47C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 683DF6F31CFC7BC200B8E47C /* LaunchScreen.storyboard */; };
+		683DF6FD1CFC86F700B8E47C /* registrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DF6FC1CFC86F700B8E47C /* registrationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		683DF6FF1CFC871E00B8E47C /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DF6FE1CFC871E00B8E47C /* loginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		683DF6F11CFC7BC200B8E47C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683DF6F41CFC7BC200B8E47C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		683DF6F61CFC7BC200B8E47C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		683DF6FC1CFC86F700B8E47C /* registrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registrationViewController.swift; sourceTree = "<group>"; };
+		683DF6FE1CFC871E00B8E47C /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				683DF6F11CFC7BC200B8E47C /* Assets.xcassets */,
 				683DF6F31CFC7BC200B8E47C /* LaunchScreen.storyboard */,
 				683DF6F61CFC7BC200B8E47C /* Info.plist */,
+				683DF6FC1CFC86F700B8E47C /* registrationViewController.swift */,
+				683DF6FE1CFC871E00B8E47C /* loginViewController.swift */,
 			);
 			path = "SheCan v2";
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				683DF6FF1CFC871E00B8E47C /* loginViewController.swift in Sources */,
 				683DF6ED1CFC7BC200B8E47C /* ViewController.swift in Sources */,
 				683DF6EB1CFC7BC200B8E47C /* AppDelegate.swift in Sources */,
+				683DF6FD1CFC86F700B8E47C /* registrationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
