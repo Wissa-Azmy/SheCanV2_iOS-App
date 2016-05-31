@@ -26,8 +26,18 @@ class registrationViewController: UIViewController {
     func displayAlert (title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        if title == "Done" {
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default){
+                action in self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+            alert.addAction(okAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else {
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 
     
@@ -45,13 +55,18 @@ class registrationViewController: UIViewController {
     @IBAction func signUpBtn() {
         if nameField.text == "" || emailField.text == "" || phoneField.text == "" || passwordField.text == "" || confirmPasswordField.text == "" {
             displayAlert("Missing Field(s)", message: "All Fields are required")
-        } else if passwordField != confirmPasswordField {
+            
+        } else if passwordField.text != confirmPasswordField.text {
             displayAlert("Invalid Passwowrd", message: "Password fields do not match")
+            
         } else {
             let name = nameField.text
             let email = emailField.text
             let phone = phoneField.text
             let password = passwordField.text
+            
+            displayAlert("Done", message: "You are successfully registered")
+            
         }
         
     }
