@@ -65,12 +65,71 @@ class registrationViewController: UIViewController {
             let phone = phoneField.text
             let password = passwordField.text
             
-            displayAlert("Done", message: "You are successfully registered")
+            // Request Configuration
+            let url = NSURL(string: "http://localhost/iOS/PhP_test_Server/userRegister.php")
+            let request = NSMutableURLRequest(URL: url!)
+            request.HTTPMethod = "POST"
+            
+            // Send the data in the request body
+            let postString = "email=\(email!)&password=\(password!)&phone=\(phone!)&name=\(name!)"
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, request:NSError?) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    // Display alert message with confirmation
+                    self.displayAlert("Done", message: "You're Successfully registered")
+                })
+                
+            }).resume()
+            
+            
+            // Receive Response
+//            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+//                data, response, error in
+//                if error != nil {
+//                    print("error=\(error)")
+//                    return
+//                }
+//                
+//                
+//                do {
+//                    // var err: NSError?
+//                    var json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
+//                    
+//                } catch let err as NSError{
+//                    print("Failed to load: \(err)")
+//                }
+//                
+//                if let parseJSON = json {
+//                    var resultValue = parseJSON["status"] as? String
+//                    print ("result: \(resultValue)")
+//                    
+//                    var isUserRegistered:Bool = false;
+//                    if(resultValue == "Success") { isUserRegistered = true; }
+//                    
+//                    var messageToDisplay: String = parseJSON["message"] as String!;
+//                    if(!isUserRegistered){
+//                        messageToDisplay = parseJSON["message"] as String!;
+//                    }
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), {
+//                        // Display alert message with confirmation
+//                        self.displayAlert("Done", message: messageToDisplay)
+//                    })
+//                }
+//                
+//            }
+            
+//            displayAlert("Done", message: "registration Successful")
             
         }
         
     }
 
+    @IBAction func goToLoginBtn() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

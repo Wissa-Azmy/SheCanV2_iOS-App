@@ -61,6 +61,9 @@
                                 <rect key="frame" x="16" y="518" width="197" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Already have account LOGIN"/>
+                                <connections>
+                                    <action selector="goToLoginBtn" destination="zmd-9Y-A2Q" eventType="touchUpInside" id="ntQ-n8-uYl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKV-Ma-Wc0">
                                 <rect key="frame" x="16" y="229" width="284" height="21"/>
@@ -197,7 +200,7 @@
                                 <rect key="frame" x="20" y="284" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgy-ht-KAk">
                                 <rect key="frame" x="16" y="530" width="60" height="30"/>
