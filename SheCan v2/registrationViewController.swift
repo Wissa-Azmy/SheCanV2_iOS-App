@@ -26,7 +26,7 @@ class registrationViewController: UIViewController {
     func displayAlert (title: String, message: String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        if title == "Done" {
+        if title == "Success" {
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default){
                 action in self.dismissViewControllerAnimated(true, completion: nil)
@@ -74,12 +74,35 @@ class registrationViewController: UIViewController {
             let postString = "email=\(email!)&password=\(password!)&phone=\(phone!)&name=\(name!)"
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
-            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, request:NSError?) -> Void in
+            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    // Display alert message with confirmation
-                    self.displayAlert("Done", message: "You're Successfully registered")
-                })
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    if error != nil{
+                        self.displayAlert("Error", message: (error?.localizedDescription)!)
+                    }
+                    
+                    do {
+
+                            // Parse the JSON to get the IP
+                            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+
+                        if let parseJSON = json {
+                            let status = parseJSON["status"] as? String
+                            if status == "Success" {
+                                let msg = parseJSON["message"] as? String
+                                self.displayAlert(status!, message: msg!)
+                            } else {
+                                let msg = parseJSON["message"] as? String
+                                self.displayAlert(status!, message: msg!)
+                            }
+                        }
+                        
+                    } catch {
+                        print("bad things happened")
+                    }
+                    
+                }
                 
             }).resume()
             
