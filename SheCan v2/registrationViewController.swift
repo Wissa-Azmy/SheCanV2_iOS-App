@@ -84,7 +84,7 @@ class registrationViewController: UIViewController {
                     
                     do {
 
-                            // Parse the JSON to get the IP
+                            // Parse the JSON retrieved Data
                             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
 
                         if let parseJSON = json {
@@ -99,52 +99,12 @@ class registrationViewController: UIViewController {
                         }
                         
                     } catch {
-                        print("bad things happened")
+                        self.displayAlert("Error", message: "Bad things happened")
                     }
                     
                 }
                 
             }).resume()
-            
-            
-            // Receive Response
-//            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
-//                data, response, error in
-//                if error != nil {
-//                    print("error=\(error)")
-//                    return
-//                }
-//                
-//                
-//                do {
-//                    // var err: NSError?
-//                    var json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
-//                    
-//                } catch let err as NSError{
-//                    print("Failed to load: \(err)")
-//                }
-//                
-//                if let parseJSON = json {
-//                    var resultValue = parseJSON["status"] as? String
-//                    print ("result: \(resultValue)")
-//                    
-//                    var isUserRegistered:Bool = false;
-//                    if(resultValue == "Success") { isUserRegistered = true; }
-//                    
-//                    var messageToDisplay: String = parseJSON["message"] as String!;
-//                    if(!isUserRegistered){
-//                        messageToDisplay = parseJSON["message"] as String!;
-//                    }
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), {
-//                        // Display alert message with confirmation
-//                        self.displayAlert("Done", message: messageToDisplay)
-//                    })
-//                }
-//                
-//            }
-            
-//            displayAlert("Done", message: "registration Successful")
             
         }
         

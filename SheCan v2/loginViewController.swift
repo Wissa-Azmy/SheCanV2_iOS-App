@@ -56,9 +56,57 @@ class loginViewController: UIViewController {
         if usernameField.text == "" || passwordField.text == "" {
             displayAlert("Missing Field(s)", message: "Username and password are required")
         } else {
-            let username = usernameField.text
+            let email = usernameField.text
             let password = passwordField.text
             
+            // Request Configuration
+            let url = NSURL(string: "http://localhost/iOS/PhP_test_Server/userLogin.php")
+            let request = NSMutableURLRequest(URL: url!)
+            request.HTTPMethod = "POST"
+            
+            // Send the data in the request body
+            let postString = "&password=\(password!)&email=\(email!)"
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    if error != nil{
+                        self.displayAlert("Error", message: (error?.localizedDescription)!)
+                    }
+                    
+                    do {
+                        
+                        // Parse the JSON retrieved Data
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+                        
+                        if let parseJSON = json {
+                            let status = parseJSON["status"] as? String
+                            if status == "Success" {
+                                let mainPage = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController")
+                                
+                                let mainPageNav = UINavigationController(rootViewController: mainPage!)
+                                let appDelegate = UIApplication.sharedApplication().delegate
+                                appDelegate?.window??.rootViewController = mainPageNav
+                                
+                                
+//                                let msg = parseJSON["message"] as? String
+//                                self.displayAlert(status!, message: msg!)
+                            } else {
+                                let msg = parseJSON["message"] as? String
+                                self.displayAlert(status!, message: msg!)
+                            }
+                        }
+                        
+                    } catch {
+                        print("bad things happened")
+                    }
+                    
+                }
+                
+            }).resume()
+
         }
 
     }
