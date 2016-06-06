@@ -23,7 +23,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>CFBundleDisplayName</key>
-	<string></string>
+	<string>SheCan v2</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

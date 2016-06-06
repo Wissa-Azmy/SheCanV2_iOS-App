@@ -17,20 +17,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Protected App Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOL-Gk-ilI">
-                                <rect key="frame" x="83" y="102" width="154" height="21"/>
+                                <rect key="frame" x="83" y="380" width="154" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAq-Ns-Plf">
+                                <rect key="frame" x="20" y="78" width="280" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zlD-hk-KMS">
+                                <rect key="frame" x="40" y="130" width="240" height="128"/>
+                                <animations/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tga-mI-fTf">
+                                <rect key="frame" x="92" y="266" width="136" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Select Profile Photo"/>
+                                <connections>
+                                    <action selector="profilePhotoBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XSB-SE-91I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="LpF-gP-mVu"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="LpF-gP-mVu">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="EMh-M4-9vN">
+                            <connections>
+                                <action selector="logoutBtn:" destination="BYZ-38-t0r" id="cQv-1f-9b8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="profilePhoto" destination="zlD-hk-KMS" id="aKF-EH-uvS"/>
+                        <outlet property="welcomLbl" destination="sAq-Ns-Plf" id="9N8-ar-OMp"/>
                         <segue destination="6rM-Vy-5P2" kind="presentation" identifier="loginView" id="UVP-72-Bvi"/>
                     </connections>
                 </viewController>
@@ -160,7 +186,7 @@
         <!--Login View Controller-->
         <scene sceneID="2Kl-Qi-O9z">
             <objects>
-                <viewController id="6rM-Vy-5P2" customClass="loginViewController" customModule="SheCan_v2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="6rM-Vy-5P2" customClass="loginViewController" customModule="SheCan_v2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fQ8-PW-8XB"/>
                         <viewControllerLayoutGuide type="bottom" id="fx9-nU-ZsG"/>

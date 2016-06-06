@@ -84,14 +84,18 @@ class loginViewController: UIViewController {
                         if let parseJSON = json {
                             let status = parseJSON["status"] as? String
                             if status == "Success" {
-                                let mainPage = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController")
+                                NSUserDefaults.standardUserDefaults().setObject(parseJSON["id"], forKey: "userId")
+                                NSUserDefaults.standardUserDefaults().setObject(parseJSON["username"], forKey: "userName")
+                                NSUserDefaults.standardUserDefaults().synchronize()
                                 
+                                
+                                let mainPage = self.storyboard?.instantiateViewControllerWithIdentifier("ViewController")
                                 let mainPageNav = UINavigationController(rootViewController: mainPage!)
                                 let appDelegate = UIApplication.sharedApplication().delegate
                                 appDelegate?.window??.rootViewController = mainPageNav
                                 
                                 
-//                                let msg = parseJSON["message"] as? String
+//                                 let msg = parseJSON["message"] as? String
 //                                self.displayAlert(status!, message: msg!)
                             } else {
                                 let msg = parseJSON["message"] as? String
