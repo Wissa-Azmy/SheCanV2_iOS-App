@@ -47,6 +47,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+        
+        // Load user data from user userDefaults
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         let userName = NSUserDefaults.standardUserDefaults().stringForKey("userName")
         
@@ -55,7 +58,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else {
             let welcomeText = "Welcome " + userName!
             welcomLbl.text = welcomeText
+            
+            
+// Load profile image from the server
+            if profilePhoto.image == nil {
+                let imageUrl = NSURL(string: "http://localhost/iOS/PhP_test_Server/profile_pictures/\(userId!)/user-profile.jpg")
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                    let imageData = NSData(contentsOfURL: imageUrl!)
+                    
+                    if imageData != nil {
+                        dispatch_async(dispatch_get_main_queue(),{
+                            self.profilePhoto.image = UIImage(data: imageData!)
+                        })
+                    }
+                }
+            }
         }
+        
     }
     
     
@@ -126,9 +146,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                         let status = parseJSON["status"] as? String
                         if status == "Success" {
                             
-//                            let userId = parseJSON["userId"] as? String
-                            
-                            
                             let msg = parseJSON["message"] as? String
                             self.displayAlert(status!, message: msg!)
                         } else {
@@ -175,22 +192,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         body.appendString("Content-Type: \(mimetype)\r\n\r\n")
         body.appendData(imageDataKey)
         body.appendString("\r\n")
-        
-        
-//        if paths != nil {
-//            for path in paths! {
-//                let url = NSURL(fileURLWithPath: path)
-//                let filename = url.lastPathComponent
-//                let data = NSData(contentsOfURL: url)!
-//                let mimetype = mimeTypeForPath(path)
-//                
-//                body.appendString("--\(boundary)\r\n")
-//                body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename!)\"\r\n")
-//                body.appendString("Content-Type: \(mimetype)\r\n\r\n")
-//                body.appendData(imageDataKey)
-//                body.appendString("\r\n")
-//            }
-//        }
+
         
         body.appendString("--\(boundary)--\r\n")
         return body
